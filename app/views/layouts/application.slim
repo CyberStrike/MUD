@@ -1,12 +1,13 @@
 html lang='en'
 
-  meta charset="utf-8"
-  meta content="IE=edge" http-equiv="X-UA-Compatible"
-  meta content="width=device-width, initial-scale=1" name="viewport"
-  meta content="" name="description"
-
   head
-    title SoFlo Alpha
+    meta charset="utf-8"
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    meta content="" name="description"
+    meta name="description" content="#{content_for?(:description) ? yield(:description) : "Learn Rails"}">
+
+    title = content_for?(:title) ? yield(:title) : 'M.U.D'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -14,5 +15,5 @@ html lang='en'
   body
     p.notice = notice if notice
     p.alert = alert if alert
+    = render 'layouts/navbar'
     = yield
-
