@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.0'
 gem 'devise' # User Authentication
 gem 'thin' # Use Thin as Server
-
+gem 'faye-rails'
 group :development, :test do
   gem 'sqlite3' # SQLite3 DB
   gem 'spring' # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
