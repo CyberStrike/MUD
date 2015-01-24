@@ -4,16 +4,18 @@ html lang='en'
     meta charset="utf-8"
     meta content="IE=edge" http-equiv="X-UA-Compatible"
     meta content="width=device-width, initial-scale=1" name="viewport"
-    meta content="" name="description"
-    meta name="description" content="#{content_for?(:description) ? yield(:description) : "Learn Rails"}">
+    meta name="description" content="#{content_for?(:description) ? yield(:description) : 'Multi-UseR Dungeon on Rails'}"
 
-    title = content_for?(:title) ? yield(:title) : 'M.U.D'
+    title = content_for?(:title) ? yield(:title) : 'M.UR.DR'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
 
-  body
-    p.notice = notice if notice
-    p.alert = alert if alert
+  body{id="#{params[:controller]}" class="#{params[:action]}"}
+    - if notice
+     p.notice = notice
+    - if alert
+     p.alert = alert
     = render 'layouts/navbar'
-    = yield
+    .container
+      = yield
