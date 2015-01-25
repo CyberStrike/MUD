@@ -25,7 +25,9 @@ module Mud
 
     # Faye Config
     config.middleware.delete Rack::Lock
-    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25
-
+    config.middleware.use FayeRails::Middleware, mount: '/faye', :timeout => 25 do
+      map '/game/**' => GamesFayeController
+      map :default => :block
+    end
   end
 end
