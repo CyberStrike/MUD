@@ -11,25 +11,39 @@ class GamesFayeController < FayeRails::Controller
       puts "Client #{client_id} published #{data.inspect} to #{channel}."
     end
 
-    filter :in do
-      message
-      puts data
-      if data?
-        if data['message'] == 'hello'
-          # modify message.merge!('data' => {'message' =>'Test'})
-          channel.publish({message:'test'})
-        else
-          pass
-        end
-      else
-        pass
-      end
-    end
+    #
+    # filter :in do
+    #   if message.has_key?('subscription')
+    #     id = message['subscription'].delete('/game/')
+    #     @game = Game.find(id)
+    #     pass
+    #   end
+    #   puts data
+    #   if data?
+    #     if data['message'] == 'hello'
+    #       # modify message.merge!('data' => {'message' =>'Test'})
+    #       GamesFayeController.publish(message['channel'], {message:'test'})
+    #     else
+    #       pass
+    #     end
+    #   else
+    #     pass
+    #   end
+    # end
+    #
+    # filter :out do
+    #   puts "Outgoing package #{message}"
+    #   pass
+    # end
 
-    filter :out do
-      puts "Outgoing package #{message}"
-      pass
+    subscribe do
+      Rails.logger.debug "Received on #{channel}: #{inspect}"
+      if message['message'] == 'cool'
+        c.publish({message:'yay'})
+      end
+
     end
 
   end
+
 end

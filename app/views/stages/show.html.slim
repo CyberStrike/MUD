@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Description:
+  = @stage.description
+p
+  strong Brief:
+  = @stage.brief
+p
+  strong North:
+  = @stage.north_id
+p
+  strong South:
+  = @stage.south_id
+p
+  strong East:
+  = @stage.east_id
+p
+  strong West:
+  = @stage.west_id
+
+= link_to 'Edit', edit_stage_path(@stage)
+'|
+= link_to 'Back', stages_path

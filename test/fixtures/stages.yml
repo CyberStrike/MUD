@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyText
+  brief: MyText
+  north_id: 1
+  south_id: 1
+  east_id: 1
+  west_id: 1
+
+two:
+  description: MyText
+  brief: MyText
+  north_id: 1
+  south_id: 1
+  east_id: 1
+  west_id: 1

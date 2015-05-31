@@ -10,6 +10,15 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+
+    MessageRocket.on :subscription_request do |request|
+      if request.channel == '/games/' + @game.id.to_s
+        request.permit
+      else
+        request.deny
+      end
+    end
+
   end
 
   # GET /games/new

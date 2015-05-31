@@ -2,12 +2,25 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-window.client = new Faye.Client('/faye')
 
 $(document).on 'ready page:load', ->
   if $('#games.show')[0]?
-    client.subscribe '/game' + "1", (payload) ->
-      console.log(payload)
+
+    unless window.client?
+      window.client = new MessageRocket
+
+    subscribeSuccess = (channel)->
+      window.channel = channel
+      console.log("Successfully subscribed to channel" + channel)
+    subscribeFail = (error) ->
+      console.log 'Error: ', error
+
+    client.subscribe( '/games/'+ window.location.pathname.split('/')[2], (message) ->
+      console.log(message))
+    .then(
+      subscribeSuccess(channel), subscribeFail(error))
+
+
 
 
 $(document).on 'ready page:load', ->

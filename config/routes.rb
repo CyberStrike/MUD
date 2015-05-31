@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :stages
+
+  resources :adventures
+
   devise_for :users
   root to: 'games#index'
 
